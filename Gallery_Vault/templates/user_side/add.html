@@ -4,161 +4,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <link rel="stylesheet" href="{% static '/css/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-    <!-- alert -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   
+    <title>Add File</title>
     <style>
-    #search {
-        width: 750px;
-        height: 40px;
-        background-color: rgb(240, 245, 255);
-    }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom right, #f0f4ff, #eef2ff);
+        }
 
-    nav {
-        background-color: rgb(255, 255, 255);
-        color: #000;
-    }
+        nav {
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    #logo {
-        font-size: 30px;
-        margin-left: 120px;
-    }
+        #logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #5a5c5f;
+            margin-left: 20px;
+        }
 
-    #container {
-        max-width: 40%;
-        border-radius: 30px;
-    }
-    a{
-        text-decoration: none;
-        color: #000;
-    }
-    #option{
-        margin: 20px;
-    }
-    .card{
-        border-radius: 50px;
-    }
-    #fav{
-        color: orange;
-        font-size: 150%;
-        font-weight: bold;
-        transition: all 0.5s ease-in-out;
-        text-align: center;
+        nav a.nav-link {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+            transition: all 0.3s ease;
+        }
 
-    }
-    #fav:hover {
-        transition: all 0.5s ease-in-out;
-        color: white;
-        background-color: orange;
-        border-radius: 20px;
-    }
+        nav a.nav-link:hover {
+            color: #007bff;
+        }
 
+        .form-container {
+            max-width: 600px;
+            background: white;
+            padding: 2rem;
+            margin: 3rem auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
 
-    #delete{
-        font-size: 150%;
-        color: red;
-        font-weight: bold;
-        transition: all 0.5s ease-in-out;
-        text-align: center;
+        .form-container h1 {
+            font-weight: 700;
+            text-align: center;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
 
-    }
-    #delete:hover{
-        color: white;
-        background-color: red;
-        border-radius: 20px;
-        
-    }
-    .nav-link{
-        margin: 20px;
-    }
-    input{
-        border-radius: 20px;
-        width: 100px;
-        height: 40px;
-    }
-    label{
-        font-size: 25px;
-    }
-    #add{
-        border-radius: 20px;
-        height: 40px;
-        background-color: white;
-        transition: all 0.5s ease-in-out;
-        width: 300px;
-        text-align: center;
-        margin-left: 140px;
-    }
-    #add:hover{
-        background-color: #000;
-        color: white;
-        
-    }
+        .form-container label {
+            font-weight: 500;
+            margin-top: 1rem;
+            color: #555;
+        }
 
+        .form-container input[type="text"],
+        .form-container input[type="file"] {
+            width: 100%;
+            padding: 0.8rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            transition: border 0.3s;
+        }
 
+        .form-container input[type="text"]:focus,
+        .form-container input[type="file"]:focus {
+            border: 1px solid #007bff;
+            outline: none;
+        }
+
+        .form-container .category-options {
+            margin-top: 1rem;
+        }
+
+        .form-container .category-options input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 0.8rem;
+            background: #007bff;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem 0;
+            background: #f8f9fa;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
-    <title>add product</title>
 </head>
 
-<body style="background-color: rgb(241,242,244);">
-    <body style="background-color: rgb(241,242,244);">
-        <nav class="navbar navbar-expand-lg sticky-top">
-            <li class="nav-item ">
-                <a href="../index"><b id="logo">Gallery</b></a>
-            </li>
-            <div class="container">
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        </form>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="../view_all_file"><i class="fa-regular fa-eye"></i>&nbsp; View All
-                                Files</a>
-                        </li>
-                    </ul>
-                </div>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <a href="../index" id="logo">Gallery</a>
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../view_all_file"><i class="fa-regular fa-eye"></i>&nbsp; View All
+                            Files</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-   
-    <div id="container" class="container bg-white p-5 mt-4">
-        <h1 class="text-center" id="mycart">Add images</h1>
-        <hr class=" mb-4">
-        <form method="POST" enctype="multipart/form-data">
-        <div class="row p-4">
-            {% csrf_token %}
-            <label class="mt-5" for="file_id">File ID:</label>
-            <input type="text" id="pro_id" name="file_id" required><br><br>
-    
-            <label class="mt-5" for="name">Name:</label>
-            <input type="text" id="name" name="name" required><br><br>
-    
-            <label class="mt-5" for="file">File:</label>
-            <input type="file" id="img" name="file" required><br><br>
-
-            <div>
-                <label class="mt-5" for="Category">Category:</label><br><br>
-                <input type="radio" name="gallery" value="Image"> Image
-                <input type="radio" name="gallery" value="Video"> Video
-                <input type="radio" name="gallery" value="Audio"> Audio
-                <input type="radio" name="gallery" value="Others"> Others
-            </div>
-    
-            <button class="mt-5" id="add" type="submit">Add File</button>
-
         </div>
-    </form>
+    </nav>
 
+    <div class="form-container">
+        <h1>Add File</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="file_id">File ID</label>
+            <input type="text" id="file_id" name="file_id" placeholder="Enter file ID" required>
+
+            <label for="name">File Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter file name" required>
+
+            <label for="file">Upload File</label>
+            <input type="file" id="file" name="file" required>
+
+            <div class="category-options">
+                <label>Category</label><br>
+                <input type="radio" id="image" name="gallery" value="Image" required>
+                <label for="image">Image</label>
+                <input type="radio" id="video" name="gallery" value="Video" required>
+                <label for="video">Video</label>
+                <input type="radio" id="audio" name="gallery" value="Audio" required>
+                <label for="audio">Audio</label>
+                <input type="radio" id="others" name="gallery" value="Others" required>
+                <label for="others">Others</label>
+            </div>
+
+            <button type="submit">Add File</button>
+        </form>
     </div>
+
+</body>
+
+</html>
